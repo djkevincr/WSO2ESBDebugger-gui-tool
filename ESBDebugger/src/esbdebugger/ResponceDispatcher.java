@@ -25,9 +25,9 @@ import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 
 /**
- *
- * @author kevin
+ *This is class that listens on command responses on a separate thread
  */
+
 public class ResponceDispatcher extends Thread{
     BufferedReader fRequestReader;
     JTextArea responceTextArea; 
@@ -41,12 +41,12 @@ public class ResponceDispatcher extends Thread{
     public void run(){
      try{ 
           while(true){
-          if(fRequestReader.ready()){
-          String responce=fRequestReader.readLine();
-          JSONObject json=new JSONObject(responce);
-           responceTextArea.setText(json.toString(3));
-          }
-          }
+            if(fRequestReader.ready()){
+            String responce=fRequestReader.readLine();
+            JSONObject json=new JSONObject(responce);
+            responceTextArea.setText(json.toString(3));
+            }
+         }
       }catch (IOException | JSONException ex) { }
     }
 }
